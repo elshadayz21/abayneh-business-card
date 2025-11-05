@@ -4,6 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Business Card — QR</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     :root{
       --accent:#00adef;
@@ -17,9 +18,11 @@
       background-color:white;
       display:flex;justify-content:center;align-items:center;
       min-height:100vh;
+      padding:20px;
     }
     .card{
-      width:420px;
+      width:100%;
+      max-width:420px;
       background:var(--card-bg);
       border-radius:16px;
       box-shadow:0 4px 20px rgba(0,0,0,0.1);
@@ -44,14 +47,13 @@
       box-shadow:0 4px 12px rgba(0,0,0,0.15);
       text-decoration:none;
       transition:transform .2s ease;
+      font-size:20px;
     }
-    .action-btn:hover{transform:scale(1.05)}
-    .info{
-      padding:24px;
-    }
+    .action-btn:hover{transform:scale(1.05);background:#f5f5f5}
+    .info{padding:24px;}
     .info-item{display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid #e5e7eb;}
     .info-item:last-child{border-bottom:none}
-    .icon{font-size:20px;width:28px;text-align:center}
+    .icon{font-size:18px;width:28px;text-align:center;color:var(--accent)}
     .text .label{font-size:12px;color:var(--muted)}
     .text .value{font-size:14px;font-weight:600;color:#111827}
     .add-contact{
@@ -60,6 +62,35 @@
       transition:background .2s ease;
     }
     .add-contact:hover{background:#222}
+
+    .find-me{
+      text-align:center;
+      padding:0 24px 24px;
+    }
+    .find-me h3{
+      font-size:16px;
+      color:var(--dark);
+      margin-bottom:12px;
+      font-weight:700;
+    }
+    .social-links{
+      display:flex;
+      justify-content:center;
+      gap:20px;
+    }
+    .social-links a{
+      width:42px;height:42px;border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      background:#f9fafb;color:var(--dark);
+      text-decoration:none;font-size:20px;
+      box-shadow:0 2px 6px rgba(0,0,0,0.1);
+      transition:all .2s ease;
+    }
+    .social-links a:hover{background:var(--accent);color:white;transform:translateY(-2px)}
+
+    @media (max-width:480px){
+      .card{width:100%;}
+    }
   </style>
 </head>
 <body>
@@ -71,35 +102,35 @@
       <div class="name">Abayneh Meseret Chibssa</div>
       <div class="role">Senior Director, Products</div>
       <div class="actions">
-        <a href="tel:+251937101010" class="action-btn">📞</a>
-        <a href="mailto:Abayneh.Meseret@coopbankoromiasc.com" class="action-btn">✉️</a>
+        <a href="tel:+251937101010" class="action-btn"><i class="fa-solid fa-phone"></i></a>
+        <a href="mailto:Abayneh.Meseret@coopbankoromiasc.com" class="action-btn"><i class="fa-solid fa-envelope"></i></a>
       </div>
     </div>
 
     <div class="info">
       <div class="info-item">
-        <div class="icon">📞</div>
+        <div class="icon"><i class="fa-solid fa-phone"></i></div>
         <div class="text">
           <div class="label">Phone</div>
           <div class="value">+251937101010</div>
         </div>
       </div>
       <div class="info-item">
-        <div class="icon">✉️</div>
+        <div class="icon"><i class="fa-solid fa-envelope"></i></div>
         <div class="text">
           <div class="label">Email</div>
           <div class="value">Abayneh.Meseret@coopbankoromiasc.com</div>
         </div>
       </div>
       <div class="info-item">
-        <div class="icon">🌐</div>
+        <div class="icon"><i class="fa-solid fa-globe"></i></div>
         <div class="text">
           <div class="label">Website</div>
           <div class="value">coopbankoromia.com.et</div>
         </div>
       </div>
       <div class="info-item">
-        <div class="icon">🏦</div>
+        <div class="icon"><i class="fa-solid fa-building"></i></div>
         <div class="text">
           <div class="label">Organization</div>
           <div class="value">Cooperative Bank of Oromia — Senior Director, Products</div>
@@ -107,7 +138,16 @@
       </div>
     </div>
 
-    <a href="#" class="add-contact" onclick="addContact(event)">➕ Add Contact</a>
+    <div class="find-me">
+      <h3>Find me at</h3>
+      <div class="social-links">
+        <a href="https://wa.me/251937101010" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="https://t.me/abaynehmeseret" target="_blank"><i class="fa-brands fa-telegram"></i></a>
+        <a href="https://linkedin.com/in/abaynehmeseret" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+      </div>
+    </div>
+
+    <a href="#" class="add-contact" onclick="addContact(event)"><i class="fa-solid fa-user-plus"></i> Add Contact</a>
   </div>
 
   <script>
