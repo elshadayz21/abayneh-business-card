@@ -257,12 +257,47 @@
         </div>
       </div>
 
-      <a
-        href="data:text/vcard;charset=utf-8,BEGIN%3AVCARD%0AVERSION%3A3.0%0AFN%3AAbayneh%20Meseret%20Chibssa%0AORG%3ACooperative%20Bank%20of%20Oromia%0ATITLE%3ASenior%20Director%2C%20Products%0ATEL%3BTYPE%3DWORK%2CVOICE%3A%2B251937101010%0AEMAIL%3BTYPE%3DINTERNET%3AAbayneh.Meseret%40coopbankoromiasc.com%0AURL%3Ahttps%3A%2F%2Fcoopbankoromia.com.et%0AEND%3AVCARD"
-        download="Abayneh_Meseret_Chibssa.vcf"
+      <button
         class="add-contact"
-        ><i class="fa-solid fa-user-plus"></i> Add Contact</a
+        onclick="addContact()"
+        style="border: none; cursor: pointer; font-size: inherit"
       >
+        <i class="fa-solid fa-user-plus"></i> Add Contact
+      </button>
     </div>
+
+    <script>
+      function addContact() {
+        const vcard = `BEGIN:VCARD
+VERSION:3.0
+FN:Abayneh Meseret Chibssa
+ORG:Cooperative Bank of Oromia
+TITLE:Senior Director, Products
+TEL;TYPE=WORK,VOICE:+251937101010
+EMAIL;TYPE=INTERNET:Abayneh.Meseret@coopbankoromiasc.com
+URL:https://coopbankoromia.com.et
+END:VCARD`;
+
+        const blob = new Blob([vcard], { type: "text/vcard" });
+        const url = URL.createObjectURL(blob);
+
+        // For mobile devices, navigate to blob URL which triggers contact app
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+        if (isMobile) {
+          // On mobile, navigating to blob URL triggers contact app
+          window.location.href = url;
+        } else {
+          // On desktop, download the file
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = "Abayneh_Meseret_Chibssa.vcf";
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+        }
+      }
+    </script>
   </body>
 </html>
