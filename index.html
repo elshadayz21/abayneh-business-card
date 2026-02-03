@@ -257,52 +257,12 @@
         </div>
       </div>
 
-      <a href="#" class="add-contact" onclick="addContact(event)"
+      <a
+        href="data:text/vcard;charset=utf-8,BEGIN%3AVCARD%0AVERSION%3A3.0%0AFN%3AAbayneh%20Meseret%20Chibssa%0AORG%3ACooperative%20Bank%20of%20Oromia%0ATITLE%3ASenior%20Director%2C%20Products%0ATEL%3BTYPE%3DWORK%2CVOICE%3A%2B251937101010%0AEMAIL%3BTYPE%3DINTERNET%3AAbayneh.Meseret%40coopbankoromiasc.com%0AURL%3Ahttps%3A%2F%2Fcoopbankoromia.com.et%0AEND%3AVCARD"
+        download="Abayneh_Meseret_Chibssa.vcf"
+        class="add-contact"
         ><i class="fa-solid fa-user-plus"></i> Add Contact</a
       >
     </div>
-
-    <script>
-      async function addContact(e) {
-        e.preventDefault();
-        const vcard = `BEGIN:VCARD\nVERSION:3.0\nFN:Abayneh Meseret Chibssa\nORG:Cooperative Bank of Oromia\nTITLE:Senior Director, Products\nTEL;TYPE=WORK,VOICE:+251937101010\nEMAIL;TYPE=INTERNET:Abayneh.Meseret@coopbankoromiasc.com\nURL:https://coopbankoromia.com.et\nEND:VCARD`;
-
-        // Create vCard file
-        const blob = new Blob([vcard], { type: "text/vcard;charset=utf-8" });
-        const file = new File([blob], "Abayneh_Meseret_Chibssa.vcf", {
-          type: "text/vcard;charset=utf-8",
-        });
-
-        // Try Web Share API first (works on mobile devices)
-        if (
-          navigator.share &&
-          navigator.canShare &&
-          navigator.canShare({ files: [file] })
-        ) {
-          try {
-            await navigator.share({
-              files: [file],
-              title: "Add Contact",
-              text: "Abayneh Meseret Chibssa - Senior Director, Products",
-            });
-            return;
-          } catch (err) {
-            if (err.name !== "AbortError") {
-              console.log("Share failed, falling back to download");
-            }
-          }
-        }
-
-        // Fallback: Direct download for desktop or unsupported browsers
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = "Abayneh_Meseret_Chibssa.vcf";
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-        URL.revokeObjectURL(url);
-      }
-    </script>
   </body>
 </html>
