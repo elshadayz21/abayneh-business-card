@@ -257,47 +257,14 @@
         </div>
       </div>
 
-      <button
+      <a
         class="add-contact"
-        onclick="addContact()"
-        style="border: none; cursor: pointer; font-size: inherit"
+        href="Abayneh_Meseret_Chibssa.vcf"
+        style="cursor: pointer; font-size: inherit"
       >
         <i class="fa-solid fa-user-plus"></i> Add Contact
-      </button>
+      </a>
     </div>
 
-    <script>
-      function addContact() {
-        const vcard = `BEGIN:VCARD
-VERSION:3.0
-FN:Abayneh Meseret Chibssa
-ORG:Cooperative Bank of Oromia
-TITLE:Senior Director, Products
-TEL;TYPE=WORK,VOICE:+251937101010
-EMAIL;TYPE=INTERNET:Abayneh.Meseret@coopbankoromiasc.com
-URL:https://coopbankoromia.com.et
-END:VCARD`;
-
-        const blob = new Blob([vcard], { type: "text/vcard" });
-        const url = URL.createObjectURL(blob);
-
-        // For mobile devices, navigate to blob URL which triggers contact app
-        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
-        if (isMobile) {
-          // On mobile, navigating to blob URL triggers contact app
-          window.location.href = url;
-        } else {
-          // On desktop, download the file
-          const a = document.createElement("a");
-          a.href = url;
-          a.download = "Abayneh_Meseret_Chibssa.vcf";
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
-          URL.revokeObjectURL(url);
-        }
-      }
-    </script>
   </body>
 </html>
